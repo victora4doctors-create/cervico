@@ -1,0 +1,1923 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[A4] Estratégia Cervico/Platismo — ICP + Avatares</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --laranja: #FF6B35;
+    --laranja-claro: #FF8C61;
+    --laranja-escuro: #E85A2B;
+    --preto: #1A1A1A;
+    --cinza-escuro: #2D2D2D;
+    --cinza-medio: #6B6B6B;
+    --cinza-claro: #E5E5E5;
+    --branco: #FFFFFF;
+    --off-white: #F9F9F9;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--off-white);
+    color: var(--preto);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    font-size: 15px;
+  }
+
+  /* ══════════ CAPA ══════════ */
+  .cover {
+    background: linear-gradient(135deg, var(--laranja) 0%, var(--laranja-escuro) 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 60px;
+    color: var(--branco);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 400px;
+    height: 400px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+  }
+
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: -150px;
+    left: -150px;
+    width: 500px;
+    height: 500px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+  }
+
+  .cover-tag {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    backdrop-filter: blur(10px);
+    width: fit-content;
+  }
+
+  .cover-main {
+    z-index: 1;
+  }
+
+  .cover h1 {
+    font-size: clamp(42px, 6vw, 72px);
+    font-weight: 800;
+    line-height: 1.1;
+    margin: 24px 0 16px;
+    letter-spacing: -1px;
+  }
+
+  .cover-subtitle {
+    font-size: 18px;
+    font-weight: 400;
+    opacity: 0.9;
+    max-width: 600px;
+    line-height: 1.5;
+  }
+
+  .cover-meta {
+    display: flex;
+    gap: 40px;
+    margin-top: 48px;
+    flex-wrap: wrap;
+  }
+
+  .cover-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .cover-meta-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    opacity: 0.7;
+    font-weight: 600;
+  }
+
+  .cover-meta-value {
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .cover-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    opacity: 0.7;
+    z-index: 1;
+  }
+
+  /* ══════════ PÁGINA ══════════ */
+  .page {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 80px 60px;
+  }
+
+  .section-header {
+    margin-bottom: 48px;
+    padding-bottom: 24px;
+    border-bottom: 3px solid var(--laranja);
+  }
+
+  .section-tag {
+    display: inline-block;
+    background: var(--laranja);
+    color: var(--branco);
+    padding: 6px 16px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 800;
+    color: var(--preto);
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+
+  .section-subtitle {
+    font-size: 16px;
+    color: var(--cinza-medio);
+    font-weight: 400;
+  }
+
+  /* ══════════ ICP ══════════ */
+  .icp-grid {
+    display: grid;
+    gap: 32px;
+  }
+
+  .icp-block {
+    background: var(--branco);
+    border: 2px solid var(--cinza-claro);
+    border-radius: 12px;
+    padding: 32px;
+    transition: all 0.3s ease;
+  }
+
+  .icp-block:hover {
+    border-color: var(--laranja);
+    box-shadow: 0 8px 24px rgba(255, 107, 53, 0.1);
+  }
+
+  .icp-block-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--laranja);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .icp-block-title::before {
+    content: '';
+    width: 4px;
+    height: 20px;
+    background: var(--laranja);
+    border-radius: 2px;
+  }
+
+  .icp-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .icp-item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 16px;
+    align-items: start;
+  }
+
+  .icp-item-icon {
+    width: 8px;
+    height: 8px;
+    background: var(--laranja);
+    border-radius: 50%;
+    margin-top: 8px;
+  }
+
+  .icp-item-text {
+    font-size: 15px;
+    color: var(--preto);
+    line-height: 1.6;
+  }
+
+  .icp-item-label {
+    font-weight: 600;
+    color: var(--cinza-escuro);
+    margin-bottom: 4px;
+  }
+
+  /* ══════════ AVATARES ══════════ */
+  .avatar-section {
+    margin-bottom: 80px;
+  }
+
+  .avatar-header {
+    background: linear-gradient(135deg, var(--laranja) 0%, var(--laranja-escuro) 100%);
+    color: var(--branco);
+    padding: 40px;
+    border-radius: 12px;
+    margin-bottom: 40px;
+  }
+
+  .avatar-number {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.8;
+    margin-bottom: 8px;
+  }
+
+  .avatar-name {
+    font-size: 36px;
+    font-weight: 800;
+    margin-bottom: 8px;
+  }
+
+  .avatar-age {
+    font-size: 18px;
+    opacity: 0.9;
+    font-weight: 500;
+  }
+
+  .camadas {
+    display: grid;
+    gap: 32px;
+  }
+
+  .camada {
+    background: var(--branco);
+    border: 2px solid var(--cinza-claro);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .camada-header {
+    background: var(--laranja);
+    color: var(--branco);
+    padding: 20px 32px;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+
+  .camada-body {
+    padding: 32px;
+  }
+
+  .subsecao {
+    margin-bottom: 32px;
+  }
+
+  .subsecao:last-child {
+    margin-bottom: 0;
+  }
+
+  .subsecao-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--laranja);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--cinza-claro);
+  }
+
+  .subsecao-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 16px;
+    align-items: start;
+  }
+
+  .item-bullet {
+    width: 6px;
+    height: 6px;
+    background: var(--laranja);
+    border-radius: 50%;
+    margin-top: 8px;
+  }
+
+  .item-text {
+    font-size: 15px;
+    color: var(--preto);
+    line-height: 1.6;
+  }
+
+  .destaque {
+    background: #FFF5F2;
+    border-left: 4px solid var(--laranja);
+    padding: 20px 24px;
+    border-radius: 8px;
+    margin-top: 24px;
+  }
+
+  .destaque-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--laranja);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
+  }
+
+  .destaque-items {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .destaque-item {
+    font-size: 15px;
+    color: var(--preto);
+    font-weight: 600;
+    padding-left: 20px;
+    position: relative;
+  }
+
+  .destaque-item::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--laranja);
+    font-weight: 700;
+  }
+
+  /* ══════════ TABELA COMPARATIVA ══════════ */
+  .tabela-section {
+    background: var(--branco);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid var(--cinza-claro);
+  }
+
+  .tabela-header {
+    background: var(--laranja);
+    color: var(--branco);
+    padding: 24px 32px;
+    text-align: center;
+  }
+
+  .tabela-title {
+    font-size: 24px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .tabela {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .tabela th {
+    background: var(--cinza-escuro);
+    color: var(--branco);
+    padding: 16px;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: left;
+  }
+
+  .tabela td {
+    padding: 20px 16px;
+    border-bottom: 1px solid var(--cinza-claro);
+    font-size: 14px;
+    color: var(--preto);
+  }
+
+  .tabela tr:last-child td {
+    border-bottom: none;
+  }
+
+  .tabela tr:hover {
+    background: #FFF5F2;
+  }
+
+  .tabela-label {
+    font-weight: 700;
+    color: var(--cinza-escuro);
+  }
+
+  /* ══════════ RESPONSIVE ══════════ */
+  @media (max-width: 768px) {
+    .cover, .page {
+      padding: 40px 24px;
+    }
+
+    .cover h1 {
+      font-size: 36px;
+    }
+
+    .section-title {
+      font-size: 28px;
+    }
+
+    .avatar-name {
+      font-size: 28px;
+    }
+
+    .camada-header {
+      padding: 16px 24px;
+      font-size: 14px;
+    }
+
+    .camada-body {
+      padding: 24px;
+    }
+
+    .tabela {
+      font-size: 13px;
+    }
+
+    .tabela th, .tabela td {
+      padding: 12px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════ CAPA ══════════ -->
+<div class="cover">
+  <div>
+    <div class="cover-tag">[A4] Estratégia de Captação</div>
+  </div>
+  
+  <div class="cover-main">
+    <h1>Cervicoplastia<br>& Platismoplastia</h1>
+    <p class="cover-subtitle">Framework completo de ICP + 3 Avatares para estruturação de campanhas de captação digital via Meta Ads</p>
+    
+    <div class="cover-meta">
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Procedimentos</div>
+        <div class="cover-meta-value">Cervico + Platismo</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Ticket Médio</div>
+        <div class="cover-meta-value">R$ 10k - R$ 15k</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Canal Principal</div>
+        <div class="cover-meta-value">Meta Ads (Instagram/Facebook)</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Avatares</div>
+        <div class="cover-meta-value">3 perfis de idade</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cover-footer">
+    <div>Framework Estratégico — 2025</div>
+    <div>Versão 1.0</div>
+  </div>
+</div>
+
+
+<!-- ══════════ ICP GERAL ══════════ -->
+<div class="page">
+  <div class="section-header">
+    <div class="section-tag">ICP — Ideal Customer Profile</div>
+    <h2 class="section-title">Perfil da Clínica/Médico Ideal</h2>
+    <p class="section-subtitle">Quem é o cliente perfeito para essa estratégia de captação digital</p>
+  </div>
+
+  <div class="icp-grid">
+    
+    <!-- CAMADA 1: ESTRUTURAL -->
+    <div class="icp-block">
+      <div class="icp-block-title">01. Perfil Estrutural</div>
+      <div class="icp-content">
+        
+        <div class="icp-item">
+          <div class="icp-item-icon"></div>
+          <div class="icp-item-text">
+            <div class="icp-item-label">Tipo de profissional</div>
+            Cirurgião plástico com foco em rejuvenescimento facial e procedimentos estéticos de médio a alto ticket
+          </div>
+        </div>
+
+        <div class="icp-item">
+          <div class="icp-item-icon"></div>
+          <div class="icp-item-text">
+            <div class="icp-item-label">Especialização</div>
+            Membro da SBCP (Sociedade Brasileira de Cirurgia Plástica), com especialização em cirurgia facial e/ou estética
+          </div>
+        </div>
+
+        <div class="icp-item">
+          <div class="icp-item-icon"></div>
+          <div class="icp-item-text">
+            <div class="icp-item-label">Experiência</div>
+            Mínimo 5 anos de atuação, com portfólio consolidado de casos de cervicoplastia/platismoplastia
+          </div>
+        </div>
+
+        <div class="icp-item">
+          <div class="icp-item-icon"></div>
+          <div class="icp-item-text">
+            <div class="icp-item-label">Localização</div>
+            Capital ou cidade de médio/grande porte, em bairro nobre ou região de fácil acesso para público classe A/B
+          </div>
+        </div>
+
+        <div class="icp-item">
+          <div class="icp-item-icon"></div>
+          <div class="icp-item-text">
+            <div class="icp-item-label">Estrutura física</div>
+            Clínica própria bem equipada OU realiza procedimentos em hospital/centro cirúrgico credenciado de alto padrão
+          </div>
+        </div>
+
+        <div class="icp-item">
+          <div class="icp-item-icon"></div>
+          <div class="icp-item-text">
+            <div class="icp-item-label">Equipe</div>
+            Time estruturado: recepção, assessoria de pacientes, anestesista de confiança, equipe de pós-operatório
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CAMADA 2: POSICIONAMENTO -->
+    <div class="icp-block">
+      <div class="icp-block-title">02. Posicionamento de Mercado</div>
+      <div class="icp-content">
+        
+        <div class="icp-item">
+          <div class="icp-item-icon"></div>
+          <div class="icp-item-text">
+            <div class="icp-item-label">Faixa de preço</div>
+            Premium (R$ 10k - R$ 20k+ por procedimento), não compete por preço, valoriza resultado e exclusividade
+          </div>
+        </div>
+
+        <div class="icp-item">
+          <div class="icp-item-icon"></div>
+          <div class="icp-item-text">
+            <div class="icp-item-label">Público-alvo atual</div>
+            Classe A/B, mulheres 35-70 anos, que já investem em estética e buscam soluções definitivas
+          </div>
+        </div>
+
+        <div class="icp-item">
+          <div class="icp-item-icon"></div>
+          <div class="icp-item-text">
+            <div class="icp-item-label">Volume vs Exclusividade</div>
+            Modelo de atendimento exclusivo (poucos pacientes, alto ticket), com tempo de consulta adequado e acompanhamento personalizado
+          </div>
+        </div>
+
+        <div class="icp-item">
+          <div class="icp-item-icon"></div>
+          <div class="icp-item-text">
+            <div class="icp-item-label">Tipo de atendimento</div>
+            Apenas particular (não atende convênio), com possibilidade de parcelamento em até 12x ou parceria com financeiras
+          </div>
+        </div>
+
+        <div class="icp-item">
+          <div class="icp-item-icon"></div>
+          <div class="icp-item-text">
+            <div class="icp-item-label">Diferencial competitivo</div>
+            Técnica refinada, resultados naturais, atendimento humanizado, pós-operatório acompanhado de perto
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CAMADA 3: PRESENÇA DIGITAL -->
+    <div class="icp-block">
+      <div class="icp-block-title">03. Presença Digital</div>
+      <div class="icp-content">
+        
+        <div class="icp-item">
+          <div class="icp-item-icon"></div>
+          <div class="icp-item-text">
+            <div class="icp-item-label">Instagram</div>
+            Perfil ativo (mínimo 3-5 posts por semana), com antes/depois de qualidade, conteúdo educativo e depoimentos reais
+          </div>
+        </div>
+
+        <div class="icp-item">
+          <div class="icp-item-icon"></div>
+          <div class="icp-item-text">
+            <div class="icp-item-label">Site</div>
+            Site profissional com informações sobre procedimentos, credenciais, estrutura, formulário de contato e WhatsApp integrado
+          </div>
+        </div>
+
+        <div class="icp-item">
+          <div class="icp-item-icon"></div>
+          <div class="icp-item-text">
+            <div class="icp-item-label">Tráfego pago</div>
+            Já investe ou está disposto a investir em Meta Ads (mínimo R$ 3k-5k/mês para testes, escalando para R$ 10k-20k+)
+          </div>
+        </div>
+
+        <div class="icp-item">
+          <div class="icp-item-icon"></div>
+          <div class="icp-item-text">
+            <div class="icp-item-label">Conteúdo disponível</div>
+            Possui banco de imagens de antes/depois (autorizadas), vídeos de depoimentos, fotos da clínica/consultório e equipe
+          </div>
+        </div>
+
+        <div class="icp-item">
+          <div class="icp-item-icon"></div>
+          <div class="icp-item-text">
+            <div class="icp-item-label">Disposição para aparecer</div>
+            Médico disposto a aparecer em vídeos educativos, reels explicando procedimentos e humanizando a marca
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CAMADA 4: METAS E EXPECTATIVAS -->
+    <div class="icp-block">
+      <div class="icp-block-title">04. Metas e Expectativas</div>
+      <div class="icp-content">
+        
+        <div class="icp-item">
+          <div class="icp-item-icon"></div>
+          <div class="icp-item-text">
+            <div class="icp-item-label">Volume desejado</div>
+            3-8 procedimentos de cervico/platismo por mês (considerando ciclo de vendas de 30-90 dias)
+          </div>
+        </div>
+
+        <div class="icp-item">
+          <div class="icp-item-icon"></div>
+          <div class="icp-item-text">
+            <div class="icp-item-label">CAC aceitável</div>
+            Até R$ 1.500 - R$ 2.500 por paciente agendado (considerando ticket de R$ 10k-15k e LTV potencial de R$ 20k-40k)
+          </div>
+        </div>
+
+        <div class="icp-item">
+          <div class="icp-item-icon"></div>
+          <div class="icp-item-text">
+            <div class="icp-item-label">Ciclo de venda</div>
+            Entende que o ciclo é longo (30-90 dias da lead até o procedimento), com nutrição e follow-up necessários
+          </div>
+        </div>
+
+        <div class="icp-item">
+          <div class="icp-item-icon"></div>
+          <div class="icp-item-text">
+            <div class="icp-item-label">Capacidade de atendimento</div>
+            Estrutura para receber aumento de volume de consultas (10-20 consultas/mês de cervico/platismo)
+          </div>
+        </div>
+
+        <div class="icp-item">
+          <div class="icp-item-icon"></div>
+          <div class="icp-item-text">
+            <div class="icp-item-label">Visão de longo prazo</div>
+            Entende marketing como investimento de médio/longo prazo, não espera resultados imediatos, está disposto a testar e otimizar
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CAMADA 5: OBJEÇÕES E RED FLAGS -->
+    <div class="icp-block">
+      <div class="icp-block-title">05. Red Flags (Não é ICP se...)</div>
+      <div class="icp-content">
+        
+        <div class="icp-item">
+          <div class="icp-item-icon"></div>
+          <div class="icp-item-text">
+            Compete por preço ou faz promoções agressivas (Black Friday de cirurgia, etc)
+          </div>
+        </div>
+
+        <div class="icp-item">
+          <div class="icp-item-icon"></div>
+          <div class="icp-item-text">
+            Não tem portfólio de antes/depois ou não consegue autorização dos pacientes
+          </div>
+        </div>
+
+        <div class="icp-item">
+          <div class="icp-item-icon"></div>
+          <div class="icp-item-text">
+            Médico não quer aparecer/criar conteúdo (delega 100% para terceiros sem participação)
+          </div>
+        </div>
+
+        <div class="icp-item">
+          <div class="icp-item-icon"></div>
+          <div class="icp-item-text">
+            Atendimento em massa (agenda lotada, consultas de 15 min, sem personalização)
+          </div>
+        </div>
+
+        <div class="icp-item">
+          <div class="icp-item-icon"></div>
+          <div class="icp-item-text">
+            Quer resultado imediato (espera 10 cirurgias no primeiro mês de tráfego)
+          </div>
+        </div>
+
+        <div class="icp-item">
+          <div class="icp-item-icon"></div>
+          <div class="icp-item-text">
+            Não tem budget mínimo para tráfego (menos de R$ 3k/mês é inviável para procedimento de alto ticket)
+          </div>
+        </div>
+
+        <div class="icp-item">
+          <div class="icp-item-icon"></div>
+          <div class="icp-item-text">
+            Estrutura precária (consultório improvisado, sem equipe, sem hospital credenciado)
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══════════ AVATAR 1 ══════════ -->
+<div class="page">
+  <div class="section-header">
+    <div class="section-tag">Avatares — Perfis de Paciente</div>
+    <h2 class="section-title">3 Avatares Estratégicos</h2>
+    <p class="section-subtitle">Mapeamento completo por faixa etária e comportamento</p>
+  </div>
+
+  <div class="avatar-section">
+    <div class="avatar-header">
+      <div class="avatar-number">Avatar 01 / 03</div>
+      <div class="avatar-name">A Preventiva Consciente</div>
+      <div class="avatar-age">30 - 45 anos</div>
+    </div>
+
+    <div class="camadas">
+      
+      <!-- CAMADA 1: DEMOGRÁFICA -->
+      <div class="camada">
+        <div class="camada-header">Camada 01 — Perfil Demográfico</div>
+        <div class="camada-body">
+          
+          <div class="subsecao">
+            <div class="subsecao-title">Quem é</div>
+            <div class="subsecao-content">
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Mulher, 35-42 anos</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Classe A/B (renda familiar R$ 15k - R$ 40k)</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Casada ou em relacionamento estável</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Trabalha (empresária, executiva, profissional liberal, influencer)</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Mora em capital ou cidade de médio/grande porte</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Tem filhos pequenos ou está planejando</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="subsecao">
+            <div class="subsecao-title">Contexto de Vida</div>
+            <div class="subsecao-content">
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Ativa socialmente (eventos, viagens, redes sociais)</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Preocupada com aparência e bem-estar</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Já investe em estética regularmente (skincare, dermatologista, academia)</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Consome conteúdo sobre saúde, beleza e lifestyle</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Toma decisões de forma autônoma (não precisa pedir autorização)</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="subsecao">
+            <div class="subsecao-title">Capacidade Financeira</div>
+            <div class="subsecao-content">
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Pode parcelar ou pagar à vista</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Já gastou entre R$ 2k - R$ 8k em procedimentos estéticos anteriores</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Entende que qualidade tem preço</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Prioriza resultado sobre economia</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CAMADA 2: PSICOLÓGICA -->
+      <div class="camada">
+        <div class="camada-header">Camada 02 — Perfil Psicológico</div>
+        <div class="camada-body">
+          
+          <div class="subsecao">
+            <div class="subsecao-title">Problema Principal</div>
+            <div class="subsecao-content">
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Papada que não some mesmo emagrecendo</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Gordura localizada no queixo/pescoço que incomoda em fotos e vídeos</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Início de flacidez (ainda não tem "cordas" aparentes, mas percebe a perda de definição)</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Sente que o rosto está "pesado" ou sem contorno</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="subsecao">
+            <div class="subsecao-title">Sintomas Emocionais</div>
+            <div class="subsecao-content">
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Evita tirar fotos de perfil</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Usa ângulos específicos em selfies</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Sente insegurança em videochamadas</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Compara o próprio rosto com fotos de anos atrás</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Frustração por não conseguir resolver com dieta/exercício</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="subsecao">
+            <div class="subsecao-title">Tentativas Anteriores</div>
+            <div class="subsecao-content">
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Já fez ou pesquisou: criolipólise, ultrassom microfocado, enzimas, radiofrequência</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Já investe em skincare premium</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Já fez botox, preenchimento, harmonização facial</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Sabe que tratamentos não-invasivos têm limite</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="subsecao">
+            <div class="subsecao-title">Desejos</div>
+            <div class="subsecao-content">
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Ter um contorno facial definido ("jawline marcada")</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Voltar a se sentir bonita em qualquer ângulo</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Rejuvenescer sem parecer "operada"</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Ter autoestima elevada em eventos sociais</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Sentir-se confiante em fotos e vídeos</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="destaque">
+            <div class="destaque-title">Principais Objeções</div>
+            <div class="destaque-items">
+              <div class="destaque-item">"Será que eu já preciso de cirurgia? Não sou tão velha assim..."</div>
+              <div class="destaque-item">"Tenho medo de ficar com cara de artificial"</div>
+              <div class="destaque-item">"E se não ficar bom? Não tem volta"</div>
+              <div class="destaque-item">"Quanto tempo vou ficar roxa/inchada? Tenho compromissos"</div>
+              <div class="destaque-item">"Será que esse médico é realmente especialista nisso?"</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CAMADA 3: COMPORTAMENTAL -->
+      <div class="camada">
+        <div class="camada-header">Camada 03 — Momento de Compra</div>
+        <div class="camada-body">
+          
+          <div class="subsecao">
+            <div class="subsecao-title">Gatilhos (o que faz ela procurar)</div>
+            <div class="subsecao-content">
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Viu uma foto/vídeo dela e se assustou com a aparência</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Evento importante se aproximando (casamento, formatura, viagem)</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Amigas fizeram e ficou com resultado incrível</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Passou dos 35-40 e percebeu que "não adianta mais esperar"</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Viu antes/depois no Instagram e pensou "eu quero isso"</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="subsecao">
+            <div class="subsecao-title">Urgência</div>
+            <div class="subsecao-content">
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Média-alta (quer resolver logo, mas pode esperar o momento certo)</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Planeja com antecedência (3-6 meses antes de evento importante)</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Prefere fazer em período estratégico (férias, recesso)</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="subsecao">
+            <div class="subsecao-title">Jornada de Busca</div>
+            <div class="subsecao-content">
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Começa pesquisando no Instagram/Google ("lipo de papada", "antes e depois papada")</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Consome muito conteúdo educativo (reels, stories, posts)</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Stalka o perfil do médico por semanas antes de entrar em contato</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Pergunta para amigas/conhecidas que já fizeram</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Compara 2-3 profissionais antes de decidir</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="destaque">
+            <div class="destaque-title">Decisão Final</div>
+            <div class="destaque-items">
+              <div class="destaque-item">O que faz ela fechar: Resultado visível + Confiança no médico + Estrutura profissional</div>
+              <div class="destaque-item">O que faz ela desistir: Medo do pós-operatório + Médico sem autoridade clara + Preço sem justificativa</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CAMADA 4: CONSCIÊNCIA -->
+      <div class="camada">
+        <div class="camada-header">Camada 04 — Nível de Consciência</div>
+        <div class="camada-body">
+          
+          <div class="subsecao">
+            <div class="subsecao-title">Estágio: 3-4 (Consciente da Solução / Consciente do Produto)</div>
+            <div class="subsecao-content">
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Já sabe que tem o problema (papada/flacidez)</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Já pesquisou sobre "lipo de papada", "cirurgia de pescoço"</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Está comparando médicos e abordagens</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Precisa de prova de resultado + confiança + diferenciação</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="destaque">
+            <div class="destaque-title">Estratégia de Comunicação</div>
+            <div class="destaque-items">
+              <div class="destaque-item">Mostrar antes/depois de casos similares</div>
+              <div class="destaque-item">Explicar a técnica de forma simples (sem terrorismo)</div>
+              <div class="destaque-item">Evidenciar credenciais e especializações do médico</div>
+              <div class="destaque-item">Tranquilizar sobre o pós-operatório (fotos de evolução, depoimentos)</div>
+              <div class="destaque-item">Criar senso de exclusividade ("poucos médicos dominam essa técnica")</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════ AVATAR 2 ══════════ -->
+<div class="page">
+  <div class="avatar-section">
+    <div class="avatar-header">
+      <div class="avatar-number">Avatar 02 / 03</div>
+      <div class="avatar-name">A Incomodada Decidida</div>
+      <div class="avatar-age">45 - 60 anos</div>
+    </div>
+
+    <div class="camadas">
+      
+      <!-- CAMADA 1: DEMOGRÁFICA -->
+      <div class="camada">
+        <div class="camada-header">Camada 01 — Perfil Demográfico</div>
+        <div class="camada-body">
+          
+          <div class="subsecao">
+            <div class="subsecao-title">Quem é</div>
+            <div class="subsecao-content">
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Mulher, 48-58 anos</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Classe A/B (renda familiar R$ 20k - R$ 50k+)</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Casada, divorciada ou solteira</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Executiva, empresária, profissional consolidada</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Filhos já crescidos ou independentes</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Mora em capital ou região metropolitana</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="subsecao">
+            <div class="subsecao-title">Contexto de Vida</div>
+            <div class="subsecao-content">
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Fase de "renascimento pessoal" (divórcio, ninho vazio, novo relacionamento)</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Quer se sentir bem consigo mesma novamente</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Tem tempo e dinheiro para investir em si</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Ativa profissionalmente, mas priorizando qualidade de vida</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Consome conteúdo sobre longevidade, bem-estar, estética madura</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="subsecao">
+            <div class="subsecao-title">Capacidade Financeira</div>
+            <div class="subsecao-content">
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Pode pagar à vista sem comprometer orçamento</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Não hesita em investir se vê valor</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Já gastou R$ 10k+ em estética ao longo da vida</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Valoriza resultado duradouro</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CAMADA 2: PSICOLÓGICA -->
+      <div class="camada">
+        <div class="camada-header">Camada 02 — Perfil Psicológico</div>
+        <div class="camada-body">
+          
+          <div class="subsecao">
+            <div class="subsecao-title">Problema Principal</div>
+            <div class="subsecao-content">
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Perda total da linha da mandíbula ("queixo duplo", "pescoço caído")</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">"Cordas" musculares visíveis ao movimentar o pescoço</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Flacidez severa que não melhora com nada</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Aparência de cansaço/envelhecimento que não condiz com como se sente</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="subsecao">
+            <div class="subsecao-title">Sintomas Emocionais</div>
+            <div class="subsecao-content">
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">"Eu me sinto jovem, mas meu pescoço me envelhece"</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Evita decotes, colares, lenços (chama atenção para a área)</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Compara com amigas da mesma idade que "estão melhores"</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Frustração profunda: "Já tentei tudo e nada funciona"</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Sente que perdeu a autoestima que tinha antes</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="subsecao">
+            <div class="subsecao-title">Tentativas Anteriores</div>
+            <div class="subsecao-content">
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Já fez TODOS os procedimentos não-invasivos possíveis</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Gastou fortunas em tratamentos que prometeram e não entregaram</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Já faz botox, preenchimento, fios de sustentação há anos</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Sabe que chegou no limite do que tratamentos não-cirúrgicos podem fazer</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="subsecao">
+            <div class="subsecao-title">Desejos</div>
+            <div class="subsecao-content">
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Ter o rosto de volta (como era aos 35-40 anos)</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Olhar no espelho e se reconhecer</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Usar roupas que gosta sem se preocupar com o pescoço</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Sentir-se atraente e confiante novamente</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Resultado definitivo (não quer ficar fazendo manutenção eterna)</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="destaque">
+            <div class="destaque-title">Principais Objeções</div>
+            <div class="destaque-items">
+              <div class="destaque-item">"Será que ainda vale a pena na minha idade?"</div>
+              <div class="destaque-item">"Tenho medo de complicações (sou hipertensa/diabética)"</div>
+              <div class="destaque-item">"E se ficar artificial? Quero parecer EU, só mais jovem"</div>
+              <div class="destaque-item">"Quanto tempo vou ficar afastada? Tenho trabalho/compromissos"</div>
+              <div class="destaque-item">"Esse médico faz em pessoas da minha idade? Quero ver casos reais"</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CAMADA 3: COMPORTAMENTAL -->
+      <div class="camada">
+        <div class="camada-header">Camada 03 — Momento de Compra</div>
+        <div class="camada-body">
+          
+          <div class="subsecao">
+            <div class="subsecao-title">Gatilhos (o que faz ela procurar)</div>
+            <div class="subsecao-content">
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Encontrou pessoas que não via há anos e se sentiu envelhecida</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Divórcio/novo relacionamento (quer se sentir atraente)</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Aniversário marcante (50, 55, 60 anos) e pensou "agora ou nunca"</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Amigas fizeram e o resultado foi transformador</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Viu um vídeo/post que falou direto com ela</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="subsecao">
+            <div class="subsecao-title">Urgência</div>
+            <div class="subsecao-content">
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Alta (já convive com o problema há anos, está decidida)</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Quer resolver logo, mas precisa de confiança total</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Disposta a esperar o médico certo</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="subsecao">
+            <div class="subsecao-title">Jornada de Busca</div>
+            <div class="subsecao-content">
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Pesquisa muito antes de decidir (Google, Instagram, indicações)</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Consome conteúdo técnico (quer entender o procedimento)</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Busca avaliações, depoimentos, antes/depois de casos reais</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Faz consulta com 2-3 médicos antes de escolher</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Decide pelo médico que passa mais confiança (não pelo preço)</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="destaque">
+            <div class="destaque-title">Decisão Final</div>
+            <div class="destaque-items">
+              <div class="destaque-item">O que faz ela fechar: Médico especialista + Casos de sucesso comprovados + Pós-operatório tranquilizador</div>
+              <div class="destaque-item">O que faz ela desistir: Médico genérico + Falta de casos da idade dela + Sensação de "linha de produção"</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CAMADA 4: CONSCIÊNCIA -->
+      <div class="camada">
+        <div class="camada-header">Camada 04 — Nível de Consciência</div>
+        <div class="camada-body">
+          
+          <div class="subsecao">
+            <div class="subsecao-title">Estágio: 4-5 (Consciente do Produto / Mais Consciente)</div>
+            <div class="subsecao-content">
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Já sabe EXATAMENTE o que precisa (cervico/platismo)</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Já pesquisou o procedimento a fundo</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Está escolhendo com QUEM fazer (não SE vai fazer)</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Precisa de prova de especialização + casos reais + segurança</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="destaque">
+            <div class="destaque-title">Estratégia de Comunicação</div>
+            <div class="destaque-items">
+              <div class="destaque-item">Mostrar casos de antes/depois de mulheres da mesma faixa etária</div>
+              <div class="destaque-item">Explicar a técnica de forma detalhada (ela quer entender)</div>
+              <div class="destaque-item">Evidenciar especialização (quantas cirurgias já fez, onde se formou, títulos)</div>
+              <div class="destaque-item">Mostrar estrutura hospitalar e equipe</div>
+              <div class="destaque-item">Depoimentos em vídeo de pacientes reais</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════ AVATAR 3 ══════════ -->
+<div class="page">
+  <div class="avatar-section">
+    <div class="avatar-header">
+      <div class="avatar-number">Avatar 03 / 03</div>
+      <div class="avatar-name">A Renovação Completa</div>
+      <div class="avatar-age">60+ anos</div>
+    </div>
+
+    <div class="camadas">
+      
+      <!-- CAMADA 1: DEMOGRÁFICA -->
+      <div class="camada">
+        <div class="camada-header">Camada 01 — Perfil Demográfico</div>
+        <div class="camada-body">
+          
+          <div class="subsecao">
+            <div class="subsecao-title">Quem é</div>
+            <div class="subsecao-content">
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Mulher, 60-75 anos</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Classe A (renda familiar R$ 30k - R$ 80k+)</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Viúva, casada há décadas ou divorciada</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Aposentada ou semi-aposentada (ainda ativa)</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Filhos adultos, possível avó</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Mora em capital ou região nobre</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="subsecao">
+            <div class="subsecao-title">Contexto de Vida</div>
+            <div class="subsecao-content">
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Fase de "viver para si" (filhos criados, carreira consolidada)</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Quer aproveitar a longevidade com qualidade</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Tem tempo, dinheiro e disposição para se cuidar</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Viaja, frequenta eventos sociais, clubes</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Valoriza exclusividade e atendimento personalizado</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="subsecao">
+            <div class="subsecao-title">Capacidade Financeira</div>
+            <div class="subsecao-content">
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Patrimônio consolidado</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Pagamento à vista sem peso</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Não considera preço como fator decisivo</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Investe em tudo que traz bem-estar</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CAMADA 2: PSICOLÓGICA -->
+      <div class="camada">
+        <div class="camada-header">Camada 02 — Perfil Psicológico</div>
+        <div class="camada-body">
+          
+          <div class="subsecao">
+            <div class="subsecao-title">Problema Principal</div>
+            <div class="subsecao-content">
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Envelhecimento facial global (não é só o pescoço, é o conjunto)</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Pescoço muito caído, "papada extrema", pele solta</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Rosto e pescoço em níveis diferentes de envelhecimento</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Aparência de "cansaço profundo" mesmo estando bem</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="subsecao">
+            <div class="subsecao-title">Sintomas Emocionais</div>
+            <div class="subsecao-content">
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">"Eu me cuido, mas meu rosto não mostra isso"</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Sente que a aparência não reflete como se sente por dentro</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Desconforto em fotos de família (netos, eventos)</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Vontade de se sentir renovada, não necessariamente "jovem"</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Medo de julgamento ("na minha idade, será que posso?")</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="subsecao">
+            <div class="subsecao-title">Tentativas Anteriores</div>
+            <div class="subsecao-content">
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Pode nunca ter feito cirurgia plástica (medo, preconceito de época)</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Ou já fez lifting/blefaroplastia e agora o pescoço ficou "desatualizado"</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Faz tratamentos estéticos leves (laser, botox moderado)</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Sabe que precisa de uma solução mais definitiva</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="subsecao">
+            <div class="subsecao-title">Desejos</div>
+            <div class="subsecao-content">
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Harmonia facial (rosto + pescoço alinhados)</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Aparência descansada e saudável</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Sentir-se bonita na idade que tem (não querer 30 anos)</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Resultado natural ("quero parecer EU, versão melhor")</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Segurança total no procedimento</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="destaque">
+            <div class="destaque-title">Principais Objeções</div>
+            <div class="destaque-items">
+              <div class="destaque-item">"Será que na minha idade é seguro operar?"</div>
+              <div class="destaque-item">"Tenho medo de anestesia, complicações"</div>
+              <div class="destaque-item">"E a recuperação? Tenho limitações físicas"</div>
+              <div class="destaque-item">"As pessoas vão achar que é besteira operar nessa idade?"</div>
+              <div class="destaque-item">"Precisa combinar com lifting? Não quero fazer tudo de uma vez"</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CAMADA 3: COMPORTAMENTAL -->
+      <div class="camada">
+        <div class="camada-header">Camada 03 — Momento de Compra</div>
+        <div class="camada-body">
+          
+          <div class="subsecao">
+            <div class="subsecao-title">Gatilhos (o que faz ela procurar)</div>
+            <div class="subsecao-content">
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Evento marcante (casamento de neto, aniversário de 70 anos)</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Amiga da mesma idade fez e ficou linda</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Viuvez/novo relacionamento (quer se sentir renovada)</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Percebeu que tem saúde e condições agora, "depois pode ser tarde"</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Médico de confiança sugeriu ou aprovou</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="subsecao">
+            <div class="subsecao-title">Urgência</div>
+            <div class="subsecao-content">
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Baixa-média (quer fazer no tempo dela, sem pressa)</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Precisa de planejamento cuidadoso (exames, acompanhamento)</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Decide quando se sentir 100% segura</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="subsecao">
+            <div class="subsecao-title">Jornada de Busca</div>
+            <div class="subsecao-content">
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Indicação de amigas/familiares (confiança é tudo)</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Pesquisa discreta (pode não compartilhar com muitas pessoas)</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Prioriza médicos reconhecidos, com longa trajetória</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Faz várias consultas até encontrar o médico que transmite segurança</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Decide pela reputação e pelo atendimento humanizado</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="destaque">
+            <div class="destaque-title">Decisão Final</div>
+            <div class="destaque-items">
+              <div class="destaque-item">O que faz ela fechar: Médico experiente + Atendimento acolhedor + Estrutura hospitalar de excelência</div>
+              <div class="destaque-item">O que faz ela desistir: Médico jovem demais + Pressa no atendimento + Falta de acolhimento</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CAMADA 4: CONSCIÊNCIA -->
+      <div class="camada">
+        <div class="camada-header">Camada 04 — Nível de Consciência</div>
+        <div class="camada-body">
+          
+          <div class="subsecao">
+            <div class="subsecao-title">Estágio: 4-5 (Consciente do Produto / Mais Consciente)</div>
+            <div class="subsecao-content">
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Já sabe que precisa de cirurgia (pesquisou ou médico indicou)</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Está avaliando SE é seguro fazer na idade dela</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Está escolhendo com QUEM fazer (segurança é prioridade #1)</div>
+              </div>
+              <div class="item">
+                <div class="item-bullet"></div>
+                <div class="item-text">Precisa de provas de segurança + acolhimento + experiência com pacientes 60+</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="destaque">
+            <div class="destaque-title">Estratégia de Comunicação</div>
+            <div class="destaque-items">
+              <div class="destaque-item">Enfatizar segurança (equipe médica, estrutura hospitalar, exames pré-operatórios)</div>
+              <div class="destaque-item">Mostrar casos de antes/depois de pacientes 60+</div>
+              <div class="destaque-item">Depoimentos de pacientes da mesma idade</div>
+              <div class="destaque-item">Tom acolhedor, respeitoso, sem pressa</div>
+              <div class="destaque-item">Explicar adaptações para a idade (técnicas, cuidados especiais)</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════ TABELA COMPARATIVA ══════════ -->
+<div class="page">
+  <div class="section-header">
+    <div class="section-tag">Síntese Comparativa</div>
+    <h2 class="section-title">3 Avatares Lado a Lado</h2>
+    <p class="section-subtitle">Visão estratégica para segmentação de campanhas</p>
+  </div>
+
+  <div class="tabela-section">
+    <div class="tabela-header">
+      <div class="tabela-title">Comparação Estratégica dos Avatares</div>
+    </div>
+    <table class="tabela">
+      <thead>
+        <tr>
+          <th>Elemento</th>
+          <th>Avatar 1 (30-45 anos)</th>
+          <th>Avatar 2 (45-60 anos)</th>
+          <th>Avatar 3 (60+ anos)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="tabela-label">Problema Principal</td>
+          <td>Papada + início de flacidez</td>
+          <td>Perda de contorno + "cordas" musculares</td>
+          <td>Envelhecimento facial global</td>
+        </tr>
+        <tr>
+          <td class="tabela-label">Objeção #1</td>
+          <td>"Sou muito nova para cirurgia?"</td>
+          <td>"Será que ainda vale a pena?"</td>
+          <td>"É seguro na minha idade?"</td>
+        </tr>
+        <tr>
+          <td class="tabela-label">Gatilho Principal</td>
+          <td>Evento social + fotos ruins</td>
+          <td>Renascimento pessoal</td>
+          <td>Evento marcante + saúde agora</td>
+        </tr>
+        <tr>
+          <td class="tabela-label">Prioridade na Decisão</td>
+          <td>Resultado + Confiança</td>
+          <td>Especialização + Casos reais</td>
+          <td>Segurança + Acolhimento</td>
+        </tr>
+        <tr>
+          <td class="tabela-label">Ticket Médio</td>
+          <td>R$ 10k - R$ 15k</td>
+          <td>R$ 10k - R$ 15k (ou mais se combo)</td>
+          <td>R$ 15k - R$ 20k+ (combo frequente)</td>
+        </tr>
+        <tr>
+          <td class="tabela-label">Urgência</td>
+          <td>Média-Alta</td>
+          <td>Alta</td>
+          <td>Baixa-Média</td>
+        </tr>
+        <tr>
+          <td class="tabela-label">Nível de Consciência</td>
+          <td>3-4 (comparando opções)</td>
+          <td>4-5 (decidida, escolhendo médico)</td>
+          <td>4-5 (precisa de segurança)</td>
+        </tr>
+        <tr>
+          <td class="tabela-label">Formato de Conteúdo</td>
+          <td>Reels educativos + Antes/Depois</td>
+          <td>Depoimentos + Cases detalhados</td>
+          <td>Conteúdo acolhedor + Segurança</td>
+        </tr>
+        <tr>
+          <td class="tabela-label">Linguagem de Busca</td>
+          <td>"Lipo de papada", "Cirurgia de queixo"</td>
+          <td>"Cervicoplastia", "Lifting de pescoço"</td>
+          <td>"Rejuvenescimento facial", "Cirurgia segura"</td>
+        </tr>
+        <tr>
+          <td class="tabela-label">Canal Preferido</td>
+          <td>Instagram (Discovery)</td>
+          <td>Instagram + Google (Pesquisa ativa)</td>
+          <td>Indicação + Facebook</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>
